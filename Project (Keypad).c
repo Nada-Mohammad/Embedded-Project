@@ -13,7 +13,7 @@ unsigned char Keypad_Getkey(void);
 void keypad_Init(void){
 	
 	SYSCTL_RCGCGPIO_R |=0x14; // active clock for port C and port E
-     while ((SYSCTL_PRGPIO_R&0x14) == 0){}; // wait
+  while ((SYSCTL_PRGPIO_R&0x14) == 0){}; // wait
 	GPIO_PORTC_LOCK_R=0x4C4F434B; 	// unlock GPIO port C
 	GPIO_PORTE_CR_R |=0x1E;  // allow changes to PE4-1
 	GPIO_PORTE_DIR_R |=0x00; // PE4-1 IN (set pine4-1 as rows)
@@ -32,8 +32,8 @@ void keypad_Init(void){
 unsigned char keypad[Rows][Cols]={
                                          {'1', '2', '3','A'},
                                          {'4', '5', '6','B'},
-			                         {'7', '8', '9','C'},
-   			                         {'*', '0', '#','D'}
+			                                   {'7', '8', '9','C'},
+   			                                 {'*', '0', '#','D'}
                                   };
 
 int i;
@@ -45,10 +45,11 @@ unsigned char Keypad_Getkey()
 	{
 	for (j=0; j<4; j++) 
 	{
-		GPIO_PORTC_DATA_R = 0xF0 &(0xF0 << (j+1));		//check the Col pressed
+		GPIO_PORTC_DATA_R = 0xF0 &(0x01 << (j+4));		//check the Col pressed
+	  SysTick_Wait(160000);
 	for (i=0; i<4; i++) 
 	{
-		if ((GPIO_PORTE_DATA_R & 0x1E) &(0x1E << (i+1)))	 //chech the Row pressed
+		if ((GPIO_PORTE_DATA_R & 0x1E) &(0x01 << (i+1)))	 //chech the Row pressed
 			return keypad[i][j];                           // return the key pressed                                    
 		}
 	}
@@ -61,15 +62,19 @@ while(1)
 {
   if (keypad[i][j] == 'A'){ // if A is pressed
 		Cook_Popcorn();
+		generic_delay(2000);
 	}
 	else if (keypad[i][j] == 'B'){ // if B is pressed
 		Cook_Beef();
+		generic_delay(2000);
 	}
 	else if (keypad[i][j] == 'C'){ // if C is pressed
 		Cook_Chicken();
+		generic_delay(2000);
 	}
 	else if (keypad[i][j] == 'D'){ // if D is pressed
 		shifttime();
+		generic_delay(2000);
 	}
 }
 }
