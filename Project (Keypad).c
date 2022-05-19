@@ -55,26 +55,3 @@ unsigned char Keypad_Getkey()
 	}
   }
  }
-
-void Cooking(){	
-	
-while(1)
-{
-  if (keypad[i][j] == 'A'){ // if A is pressed
-		Cook_Popcorn();
-		generic_delay(2000);
-	}
-	else if (keypad[i][j] == 'B'){ // if B is pressed
-		Cook_Beef();
-		generic_delay(2000);
-	}
-	else if (keypad[i][j] == 'C'){ // if C is pressed
-		Cook_Chicken();
-		generic_delay(2000);
-	}
-	else if (keypad[i][j] == 'D'){ // if D is pressed
-		shifttime();
-		generic_delay(2000);
-	}
-}
-}
