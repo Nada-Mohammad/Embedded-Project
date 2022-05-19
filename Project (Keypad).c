@@ -46,7 +46,7 @@ unsigned char Keypad_Getkey()
 	for (j=0; j<4; j++) 
 	{
 		GPIO_PORTC_DATA_R = 0xF0 &(0x01 << (j+4));		//check the Col pressed
-	  SysTick_Wait(160000);
+	  SysTick_Wait(800000);
 	for (i=0; i<4; i++) 
 	{
 		if ((GPIO_PORTE_DATA_R & 0x1E) &(0x01 << (i+1)))	 //chech the Row pressed
