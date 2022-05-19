@@ -54,22 +54,3 @@ unsigned char Keypad_Getkey()
 	}
   }
  }
-
-void Cooking(){	
-	
-while(1)
-{
-  if (keypad[i][j] == 'A'){ // if A is pressed
-		Cook_Popcorn();
-	}
-	else if (keypad[i][j] == 'B'){ // if B is pressed
-		Cook_Beef();
-	}
-	else if (keypad[i][j] == 'C'){ // if C is pressed
-		Cook_Chicken();
-	}
-	else if (keypad[i][j] == 'D'){ // if D is pressed
-		shifttime();
-	}
-}
-}
