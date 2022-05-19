@@ -81,6 +81,17 @@ unsigned char Cooking_Time(){
 		LCD_printString("Cooking Time?"); 
 		     Cooking_Time();
 		}
+        else if (Cook_String[0] == '3'){
+                 if(Cook_String[1] > '0' || Cook_String[3] > '0' || Cook_String[4] > '0'){
+		   generic_delay(50);
+		    LCD_command(0X01); 
+			LCD_printString("Invalid number");
+		   generic_delay(50);
+		   LCD_command(0X01);
+		LCD_printString("Cooking Time?"); 
+		     Cooking_Time();
+                 }
+}   
 		for(l=0;l<10;l++){	
 	     return Cook_String[l];
 	}
