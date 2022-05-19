@@ -56,17 +56,22 @@ if (k == 'B' | 'C')
 	}		
 else if (k == 'D')
 {	
-	if ('kk:kk' < '31:00') // k between 1:30
-	{
-	state = Cooking;
-	}
-	
-	else
+	if (Cook_String[0] > '3') // k is not between 1:30
 		LCD_printString("Err");
 		{
 		state = Waiting;
 		}
-	}
+	else if (Cook_String[0] == '3'){
+    if(Cook_String[1] > '0' || Cook_String[3] > '0' || Cook_String[4] > '0') // k is not between 1:30
+			LCD_printString("Err");
+		{
+		state = Waiting;
+		}
+	else 	
+	  {
+	  state = Cooking; // k between 1:30
+	  }
+	
 else
 {
 	state=Waiting;
